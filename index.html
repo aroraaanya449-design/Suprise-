@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 420px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h2 {
+      color: #ff4d6d;
+    }
+    .option {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      background: #ffe6eb;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .option:hover {
+      background: #ffb3c1;
+    }
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    #noBtn {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card" id="card">
+    <h2>Question 1 💕</h2>
+    <p>When was our first date?</p>
+
+    <div class="option" onclick="nextQ()">29 October</div>
+    <div class="option" onclick="correctFirst()">25 October</div>
+    <div class="option" onclick="nextQ()">8 November</div>
+  </div>
+
+<script>
+let step = 1;
+
+function correctFirst(){
+  alert("Yayyy you got it right 🥹💗\nUnlimited hugs coupon unlocked 🤗🤍");
+  nextQ();
+}
+
+function nextQ(){
+  step++;
+  if(step === 2){
+    document.getElementById("card").innerHTML = `
+      <h2>Question 2 💭</h2>
+      <p>What is your fav day we spent together?</p>
+      <div class="option" onclick="nextQ()">New Years</div>
+      <div class="option" onclick="nextQ()">Rainy weather</div>
+      <div class="option" onclick="nextQ()">After school when I wasn’t well</div>
+      <p><i>(All are correct 😌)</i></p>
+    `;
+  }
+  else if(step === 3){
+    document.getElementById("card").innerHTML = `
+      <h2>Question 3 😏</h2>
+      <p>Who loves more?</p>
+      <div class="option" onclick="sweet()">Me</div>
+      <div class="option" onclick="sweet()">Aanya</div>
+      <div class="option" onclick="sweet()">Chotu don</div>
+      <div class="option" onclick="sweet()">You</div>
+    `;
+  }
+  else if(step === 4){
+    document.getElementById("card").innerHTML = `
+      <h2>Final Question 💘</h2>
+      <p>Aru… will you be my Valentine? 💝</p>
+      <button onclick="yes()">Yes 💖</button>
+      <button id="noBtn" onmouseover="moveNo()">No 🙄</button>
+    `;
+  }
+}
+
+function sweet(){
+  alert("Aww you are so sweet 🥹💗");
+  nextQ();
+}
+
+function moveNo(){
+  const btn = document.getElementById("noBtn");
+  btn.style.left = Math.random()*100 - 50 + "px";
+  btn.style.top = Math.random()*100 - 50 + "px";
+}
+
+function yes(){
+  document.getElementById("card").innerHTML = `
+    <h2>It’s a YES 💞</h2>
+    <p>
+      Finally it’s a yes — no take backs 😤💖<br><br>
+      Honestly, I’ve been waiting so damn hard to spend this Valentine’s with you.<br><br>
+      I love you so much, Aru. You are literally the best person I could’ve met and the
+      best gift I’ve received from God 🤍
+    </p>
+  `;
+}
+</script>
+</body>
+</html>
