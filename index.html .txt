@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Aru 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#ffd1dc, #c1f0f6);
+      text-align: center;
+      padding: 40px;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      position: relative;
+    }
+    #response {
+      margin-top: 15px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="box">
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <p id="response"></p>
+</div>
+
+<script>
+const quiz = [
+  {
+    q: "When did I see you for the first time?",
+    options: [
+      "Coaching",
+      "School",
+      "I couldn’t see you coz I was blinded by your aura ✨😌"
+    ],
+    correct: [2],
+    correctMsg: "It’s correct 😌 but don’t get too happy.",
+    wrongMsg: "It’s incorrect… but I still love you 💗"
+  },
+  {
+    q: "What is my fav food?",
+    options: ["Momos", "You 😌", "Chocolate cake"],
+    correct: [1],
+    correctMsg: "Why would you choose this 🙈 I’m shyy.",
+    wrongMsg: "You are a big dumbooooo 😤"
+  },
+  {
+    q: "When was our first date?",
+    options: ["29 October", "25 October", "8 November"],
+    correct: [1],
+    correctMsg: "Yayyy 🥹 you got it correct!! You’ve unlocked an Unlimited Hugs Coupon 🤗💞",
+    wrongMsg: "WRONG 😤 how do you forget this huhhh"
+  },
+  {
+    q: "What is your fav day we spent together?",
+    options: [
+      "New Year’s ✨",
+      "Rainy weather 🌧️",
+      "After school when I wasn’t well 🥺"
+    ],
+    correct: [0,1,2],
+    correctMsg: "Correct 😌 because honestly… all these moments mean a lot to me 💗",
+    wrongMsg: ""
+  },
+  {
+    q: "Who loves more?? 👀",
+    options: ["Me", "Aanya", "Chotu don 😤💞", "You"],
+    correct: [0,1,2],
+    correctMsg: "Aww 🥹 you are so sweet 💗",
+    wrongMsg: "How dare you Aryy 😤"
+  },
+  {
+    q: "ARU, will you be my Valentine? 💘",
+    options: ["Yes 💖", "No 😤"],
+    final: true
+  }
+];
+
+let index = 0;
+
+function loadQ() {
+  document.getElementById("response").innerHTML = "";
+  document.getElementById("question").innerHTML = quiz[index].q;
+  const opts = document.getElementById("options");
+  opts.innerHTML = "";
+
+  quiz[index].options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.innerHTML = opt;
+
+    if (quiz[index].final && i === 1) {
+      btn.onmouseover = () => {
+        btn.style.left = Math.random()*100 - 50 + "px";
+        btn.style.top = Math.random()*50 - 25 + "px";
+      };
+    } else {
+      btn.onclick = () => handleAnswer(i);
+    }
+
+    if (quiz[index].final && i === 0) {
+      btn.onclick = showFinalPage;
+    }
+
+    opts.appendChild(btn);
+  });
+}
+
+function handleAnswer(i) {
+  const q = quiz[index];
+  if (q.correct.includes(i)) {
+    document.getElementById("response").innerHTML = q.correctMsg;
+  } else {
+    document.getElementById("response").innerHTML = q.wrongMsg;
+  }
+
+  setTimeout(() => {
+    index++;
+    if (index < quiz.length) loadQ();
+  }, 2000);
+}
+
+function showFinalPage() {
+  document.body.innerHTML = `
+    <div class="box">
+      <h2>💘💘💘</h2>
+      <p>
+      Finally it’s a yes, now no take backs 😌<br><br>
+      Honestly I have been waiting so damn hard to spend this Valentine’s with you.
+      I love you so much 💗<br><br>
+      And Aru, just so you know — you are literally the best person I could meet
+      and the best gift I received from God 🥹✨
+      </p>
+    </div>
+  `;
+}
+
+loadQ();
+</script>
+</body>
+</html>
